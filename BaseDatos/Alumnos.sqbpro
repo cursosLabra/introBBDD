@@ -1,0 +1,72 @@
+<?xml version="1.0" encoding="UTF-8"?><sqlb_project><db path="C:/src/cursos/introBBDD/BaseDatos/Alumnos.db" readonly="0" foreign_keys="1" case_sensitive_like="0" temp_store="0" wal_autocheckpoint="1000" synchronous="2"/><attached/><window><main_tabs open="structure browser pragmas query" current="0"/></window><tab_structure><column_width id="0" width="300"/><column_width id="1" width="0"/><column_width id="2" width="100"/><column_width id="3" width="4614"/><column_width id="4" width="0"/><expanded_item id="0" parent="1"/><expanded_item id="1" parent="1"/><expanded_item id="2" parent="1"/><expanded_item id="3" parent="1"/></tab_structure><tab_browse><current_table name="4,12:mainEstadisticas"/><default_encoding codec=""/><browse_table_settings><table schema="main" name="Estadisticas" show_row_id="0" encoding="" plot_x_axis="" unlock_view_pk="_rowid_"><sort/><column_widths><column index="1" value="95"/><column index="2" value="103"/><column index="3" value="116"/><column index="4" value="116"/></column_widths><filter_values/><conditional_formats/><row_id_formats/><display_formats/><hidden_columns/><plot_y_axes/><global_filter/></table><table schema="main" name="Examen1" show_row_id="0" encoding="" plot_x_axis="" unlock_view_pk="_rowid_"><sort/><column_widths><column index="1" value="42"/><column index="2" value="40"/><column index="3" value="119"/></column_widths><filter_values/><conditional_formats/><row_id_formats/><display_formats/><hidden_columns/><plot_y_axes/><global_filter/></table><table schema="main" name="VerExamen1" show_row_id="0" encoding="" plot_x_axis="" unlock_view_pk="_rowid_"><sort/><column_widths><column index="1" value="57"/><column index="2" value="66"/><column index="3" value="40"/><column index="4" value="119"/></column_widths><filter_values/><conditional_formats/><row_id_formats/><display_formats/><hidden_columns/><plot_y_axes/><global_filter/></table><table schema="main" name="VerExamen2" show_row_id="0" encoding="" plot_x_axis="" unlock_view_pk="_rowid_"><sort/><column_widths><column index="1" value="57"/><column index="2" value="66"/><column index="3" value="40"/><column index="4" value="126"/></column_widths><filter_values/><conditional_formats/><row_id_formats/><display_formats/><hidden_columns/><plot_y_axes/><global_filter/></table><table schema="main" name="VerTotal" show_row_id="0" encoding="" plot_x_axis="" unlock_view_pk="_rowid_"><sort/><column_widths><column index="1" value="57"/><column index="2" value="66"/><column index="3" value="89"/><column index="4" value="89"/><column index="5" value="46"/><column index="6" value="136"/></column_widths><filter_values/><conditional_formats/><row_id_formats/><display_formats/><hidden_columns/><plot_y_axes/><global_filter/></table><table schema="main" name="alumnos" show_row_id="0" encoding="" plot_x_axis="" unlock_view_pk="_rowid_"><sort><column index="1" mode="0"/></sort><column_widths><column index="1" value="42"/><column index="2" value="57"/><column index="3" value="66"/><column index="4" value="115"/><column index="5" value="88"/></column_widths><filter_values/><conditional_formats/><row_id_formats/><display_formats/><hidden_columns/><plot_y_axes/><global_filter/></table><table schema="main" name="alumnosImportados" show_row_id="0" encoding="" plot_x_axis="" unlock_view_pk="_rowid_"><sort/><column_widths><column index="1" value="42"/><column index="2" value="57"/><column index="3" value="66"/><column index="4" value="115"/><column index="5" value="77"/></column_widths><filter_values/><conditional_formats/><row_id_formats/><display_formats/><hidden_columns/><plot_y_axes/><global_filter/></table></browse_table_settings></tab_browse><tab_sql><sql name="CreateAlumnos">CREATE TABLE alumnos (
+	Id	            TEXT,
+	Nombre	        TEXT,
+	Apellidos       TEXT,
+	FechaNacimiento	Date,
+	Tlfno           TEXT
+)</sql><sql name="InsertAlumnos">Insert into alumnos (Id, nombre, apellidos, FechaNacimiento, tlfno) 
+Values (&quot;uo999&quot;, &quot;Eva&quot;, &quot;Parra&quot;,  &quot;9/11/1990&quot;, &quot;9851124341&quot;);</sql><sql name="CreateExamen1">CREATE TABLE Examen1 (Id TEXT, Nota REAL, Comentarios TEXT);
+Insert into Examen1 Values 
+  (&quot;uo234&quot;, 8.5, Null), 
+  (&quot;uo545&quot;, 4, &quot;Faltas de ortografía&quot;), 
+  (&quot;uo123&quot;, 6, Null), 
+  (&quot;uo666&quot;, 10, &quot;Perfecto&quot;);</sql><sql name="VerExamen1">Create view VerExamen1 AS 
+Select Alumnos.Nombre, Alumnos.Apellidos, Examen1.Nota, Examen1.Comentarios 
+From Alumnos left outer join Examen1 on alumnos.id = Examen1.Id </sql><sql name="CreateExamen2">Insert into Examen2 Values 
+  (&quot;uo999&quot;, 9, &quot;Casi perfecto&quot;);
+Insert into Examen1 Values 
+  (&quot;uo999&quot;, 9.5, &quot;Un fallito&quot;);  </sql><sql name="VerExamen2">Create View VerExamen2 AS 
+Select Alumnos.Nombre, Alumnos.Apellidos, Examen2.Nota, Examen2.Comentarios 
+From Alumnos left outer join Examen2 on alumnos.id = Examen2.Id </sql><sql name="VerTotal">Create view VerTotal AS 
+Select Nombre, Apellidos, NotaParcial1, NotaParcial2, Media, Case 
+    when NotaParcial1 is Null and NotaParcial2 is null then &quot;No Presentado&quot;
+	when NotaParcial1 is Null then &quot;Debe realizar parcial 1&quot;
+	when NotaParcial2 is null then &quot;Debe realizar parcial 2&quot;
+	when Media &lt; 5 then &quot;Suspenso&quot;
+    when Media &gt;= 5 AND Media &lt; 7 then &quot;Aprobado&quot;
+	When Media &gt;= 7 AND Media &lt; 9 then &quot;Notable&quot;
+	When Media &gt;= 9 and Media &lt; 10 then &quot;Sobresaliente&quot;
+	When Media &gt;= 10 then &quot;Mat. Honor&quot;
+	else &quot;Suspenso&quot;
+  end as Valor
+from 
+( Select 
+  Nombre, 
+  Apellidos, 
+  Examen1.Nota as NotaParcial1, 
+  Examen2.Nota as NotaParcial2, 
+  (Examen1.Nota + Examen2.Nota) / 2 as Media
+From Alumnos 
+Left outer join Examen1 on alumnos.id = Examen1.Id
+Left outer join Examen2 on alumnos.id = Examen2.Id) 
+</sql><sql name="Estadisticas">Create view Estadisticas as Select 
+ count(*) as TotalAlumnos,
+ avg(Examen1.Nota) as MediaExamen1,
+ avg(Examen2.Nota) as MediaExamen2,
+ avg((Examen1.Nota + Examen2.Nota) / 2) as MediaTotal
+From Alumnos 
+Left outer join Examen1 on alumnos.id = Examen1.Id
+Left outer join Examen2 on alumnos.id = Examen2.Id
+</sql><sql name="Editar vista VerTotal">DROP VIEW &quot;main&quot;.&quot;VerTotal&quot;;
+CREATE VIEW VerTotal AS 
+Select Nombre, Apellidos, NotaParcial1, NotaParcial2, Media, Case 
+    when NotaParcial1 is Null and NotaParcial2 is null then &quot;No Presentado&quot;
+	when NotaParcial1 is Null then &quot;Debe realizar parcial 1&quot;
+	when NotaParcial2 is null then &quot;Debe realizar parcial 2&quot;
+	when Media &lt; 5 then &quot;Suspenso&quot;
+    when Media &gt;= 5 AND Media &lt; 7 then &quot;Aprobado&quot;
+	When Media &gt;= 7 AND Media &lt; 9 then &quot;Notable&quot;
+	When Media &gt;= 9 and Media &lt; 10 then &quot;Sobresaliente&quot;
+	When Media &gt;= 10 then &quot;Mat. Honor&quot;
+	else &quot;Suspenso&quot;
+  end as Valor
+from 
+( Select 
+  Nombre, 
+  Apellidos, 
+  Examen1.Nota as NotaParcial1, 
+  Examen2.Nota as NotaParcial2, 
+  (Examen1.Nota + Examen2.Nota) / 2 as Media
+From Alumnos 
+Left outer join Examen1 on alumnos.id = Examen1.Id
+Left outer join Examen2 on alumnos.id = Examen2.Id)</sql><current_tab id="4"/></tab_sql></sqlb_project>

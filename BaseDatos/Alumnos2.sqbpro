@@ -1,0 +1,26 @@
+<?xml version="1.0" encoding="UTF-8"?><sqlb_project><db path="C:/src/cursos/introBBDD/BaseDatos/Alumnos2.db" readonly="0" foreign_keys="1" case_sensitive_like="0" temp_store="0" wal_autocheckpoint="1000" synchronous="2"/><attached/><window><main_tabs open="structure browser pragmas query" current="0"/></window><tab_structure><column_width id="0" width="300"/><column_width id="1" width="0"/><column_width id="2" width="100"/><column_width id="3" width="5250"/><column_width id="4" width="0"/><expanded_item id="0" parent="1"/><expanded_item id="1" parent="1"/><expanded_item id="2" parent="1"/><expanded_item id="3" parent="1"/></tab_structure><tab_browse><current_table name="4,16:mainResultadosLogica"/><default_encoding codec=""/><browse_table_settings><table schema="main" name="Alumno" show_row_id="0" encoding="" plot_x_axis="" unlock_view_pk="_rowid_"><sort/><column_widths><column index="1" value="69"/><column index="2" value="57"/><column index="3" value="66"/><column index="4" value="115"/><column index="5" value="40"/></column_widths><filter_values/><conditional_formats/><row_id_formats/><display_formats/><hidden_columns/><plot_y_axes/><global_filter/></table><table schema="main" name="Curso" show_row_id="0" encoding="" plot_x_axis="" unlock_view_pk="_rowid_"><sort/><column_widths><column index="1" value="58"/><column index="2" value="57"/><column index="3" value="54"/></column_widths><filter_values/><conditional_formats/><row_id_formats/><display_formats/><hidden_columns/><plot_y_axes/><global_filter/></table><table schema="main" name="Evaluacion" show_row_id="0" encoding="" plot_x_axis="" unlock_view_pk="_rowid_"><sort/><column_widths><column index="1" value="69"/><column index="2" value="70"/><column index="3" value="40"/></column_widths><filter_values/><conditional_formats/><row_id_formats/><display_formats/><hidden_columns/><plot_y_axes/><global_filter/></table><table schema="main" name="Examen" show_row_id="0" encoding="" plot_x_axis="" unlock_view_pk="_rowid_"><sort/><column_widths><column index="1" value="70"/><column index="2" value="58"/><column index="3" value="73"/></column_widths><filter_values/><conditional_formats/><row_id_formats/><display_formats/><hidden_columns/><plot_y_axes/><global_filter/></table><table schema="main" name="Matriculaciones" show_row_id="0" encoding="" plot_x_axis="" unlock_view_pk="_rowid_"><sort/><column_widths><column index="1" value="69"/><column index="2" value="58"/><column index="3" value="105"/></column_widths><filter_values/><conditional_formats/><row_id_formats/><display_formats/><hidden_columns/><plot_y_axes/><global_filter/></table><table schema="main" name="ResultadosLogica" show_row_id="0" encoding="" plot_x_axis="" unlock_view_pk="_rowid_"><sort/><column_widths><column index="1" value="69"/><column index="2" value="57"/><column index="3" value="66"/><column index="4" value="89"/><column index="5" value="89"/><column index="6" value="46"/><column index="7" value="136"/></column_widths><filter_values/><conditional_formats/><row_id_formats/><display_formats/><hidden_columns/><plot_y_axes/><global_filter/></table></browse_table_settings></tab_browse><tab_sql><sql name="CreateTableCurso">Create View ResultadosLogica AS Select IdAlumno, Nombre, Apellidos, NotaParcial1, NotaParcial2, Media, Case 
+    when NotaParcial1 is Null and NotaParcial2 is null then &quot;No Presentado&quot;
+	when NotaParcial1 is Null then &quot;Debe realizar parcial 1&quot;
+	when NotaParcial2 is null then &quot;Debe realizar parcial 2&quot;
+	when Media &lt; 5 then &quot;Suspenso&quot;
+    when Media &gt;= 5 AND Media &lt; 7 then &quot;Aprobado&quot;
+	When Media &gt;= 7 AND Media &lt; 9 then &quot;Notable&quot;
+	When Media &gt;= 9 and Media &lt; 10 then &quot;Sobresaliente&quot;
+	When Media &gt;= 10 then &quot;Mat. Honor&quot;
+	else &quot;Suspenso&quot;
+  end as Valor 
+From 
+ (Select 
+  Alumno.IdAlumno, 
+  Nombre, 
+  Apellidos, 
+  E1.Nota as NotaParcial1,
+  E2.Nota as NotaParcial2,
+  (E1.Nota + E2.Nota) / 2 AS Media
+ From Alumno
+ Left outer join Evaluacion AS E1 on 
+   Alumno.idAlumno = E1.IdAlumno AND E1.IdExamen = &quot;E1Log2223&quot;
+ Left outer join Evaluacion AS E2 on 
+  Alumno.idAlumno = E2.IdAlumno AND E2.IdExamen = &quot;E2Log2223&quot;
+)
+</sql><current_tab id="0"/></tab_sql></sqlb_project>

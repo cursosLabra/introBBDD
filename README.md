@@ -2,3 +2,7 @@
 
 Ficheros de ejemplo para curso _Introducción a las Bases de Datos_, impartido por [Jose Emilio Labra Gayo](http://labra.weso.es)
 
+## Enlaces
+
+- [SQLite](https://sqlite.org/)
+- [SQLite Studio](https://sqlitestudio.pl/)

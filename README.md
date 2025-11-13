@@ -11,4 +11,4 @@ Ficheros de ejemplo para curso _Introducción a las Bases de Datos_, impartido p
 - [SQLite Studio](https://sqlitestudio.pl/)
 - [Documentación de librería sqlite3](https://docs.python.org/3/library/sqlite3.html) contiene documentación oficial para conectarse a la librería desde Python.
 - [Notas colaborativas](https://docs.google.com/document/d/132m6zAOuPc0huxGwMgQXupLdygSs9PA0WnOoNqFhwkU/edit?usp=sharing)
-- [Ejemplos](https://colab.research.google.com/drive/1h7Rnurk8iNnkaVbzkSACsCWaPCxoCx_e#scrollTo=6X6IXWQAOubP)
+- [Ejemplos](Books/EjemplosClase_IntroBBDD.ipynb)

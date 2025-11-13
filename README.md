@@ -6,7 +6,7 @@ Ficheros de ejemplo para curso _Introducción a las Bases de Datos_, impartido p
 
 ## Enlaces
 
-- Presentación: [![DOI](https://zenodo.org/badge/DOI/10.5281/zenodo.17590453.svg)](https://doi.org/10.5281/zenodo.17590453)
+- Presentación: [![DOI](https://zenodo.org/badge/DOI/10.5281/zenodo.17590453.svg)](https://doi.org/10.5281/zenodo.17601648)
 - [SQLite](https://sqlite.org/)
 - [SQLite Studio](https://sqlitestudio.pl/)
 - [Documentación de librería sqlite3](https://docs.python.org/3/library/sqlite3.html) contiene documentación oficial para conectarse a la librería desde Python.

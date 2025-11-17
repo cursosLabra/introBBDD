@@ -1,0 +1,1 @@
+SELECT *  FROM Alumnos2 where apellidos = 'Torres';

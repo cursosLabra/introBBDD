@@ -1,0 +1,1 @@
+create index apellidos_idx on Alumnos2 (apellidos);

@@ -4,4 +4,5 @@ CREATE TABLE Contactos (
     email  text not null unique,
     tlfno  text not null default 'UNKNOWN',
     edad   integer check (edad >= 0 and edad <= 120),
-    unique (nombre, tlfno) );
+    unique (nombre, tlfno) 
+);
